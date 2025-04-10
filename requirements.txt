@@ -14,3 +14,4 @@ setuptools
 functools 
 io 
 urllib
+pip
