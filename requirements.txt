@@ -6,4 +6,4 @@ numpy
 seaborn
 statsmodels
 pandas_datareader
-pmdarima
+pmdarima==2.0.4
