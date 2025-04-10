@@ -8,3 +8,4 @@ seaborn
 statsmodels
 pandas_datareader
 distutils
+warnings
