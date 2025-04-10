@@ -6,3 +6,4 @@ numpy
 matplotlib
 seaborn
 statsmodels
+pandas_datareader
