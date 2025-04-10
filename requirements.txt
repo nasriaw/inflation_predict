@@ -6,3 +6,4 @@ numpy
 seaborn
 statsmodels
 pandas_datareader
+pmdarima
