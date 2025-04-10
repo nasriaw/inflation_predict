@@ -6,10 +6,3 @@ numpy
 seaborn
 statsmodels
 pandas_datareader
-warnings
-distutils
-setuptools
-functools 
-Python==3.10
-urllib
-pip > 25.0.1
