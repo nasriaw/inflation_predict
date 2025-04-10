@@ -8,7 +8,7 @@ seaborn
 statsmodels
 pandas_datareader
 warnings
-utils
+
 distutils
 setuptools
 functools 
