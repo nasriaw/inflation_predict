@@ -1,0 +1,11 @@
+streamlit
+pingouin
+pandas
+matplotlib
+numpy
+matplotlib
+seaborn
+statsmodels
+pmdarima
+warnings
+time
