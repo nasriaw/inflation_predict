@@ -9,7 +9,7 @@ statsmodels
 pandas_datareader
 warnings
 utils
-disutils
+distutils
 setuptools
 functools 
 io 
