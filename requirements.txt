@@ -3,7 +3,7 @@ pingouin
 matplotlib
 pingouin
 matplotlib
-numpy>=1.17.3
+numpy==1.26.4
 scipy>=1.3.2
 scikit-learn>=0.22
 pandas>=0.19
