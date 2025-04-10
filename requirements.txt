@@ -6,4 +6,9 @@ numpy
 seaborn
 statsmodels
 pandas_datareader
-pmdarima==2.0.4
+setuptools
+functools 
+python==3.11
+urllib
+pmdarima
+scipy
