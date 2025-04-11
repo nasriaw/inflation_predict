@@ -16,6 +16,7 @@ import pmdarima
 from pmdarima import auto_arima
 import warnings
 import time
+from datetime import timedelta
 warnings.filterwarnings('ignore')
 
 features=[
@@ -155,17 +156,24 @@ def SARIMA_model():
     
     train = df.iloc[:-24] 
     test = df.iloc[-24:]
-
+    train.set_index(train.iloc[:,0], inplace=True)
+    test.set_index(test.iloc[:,0], inplace=True)
+    
     forecast_test_optimized = optimized_sarima_fit.forecast(steps=24)
     forecast_test_optimized.index = test.index
     
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 4))
+    fig1, ax1 = plt.subplots(1, 1, figsize=(8, 3))
     ax1.plot(train.iloc[:,1],label="Train Data", color="black")
+    ax1.set_title('Train Data Chart')
+    st.pyplot(fig1)
+    
+    fig2, (ax2, ax3) = plt.subplots(2, 1, figsize=(8, 6))
     ax2.plot(test.iloc[:,1], label="Test Data", color="blue")
-    ax3.plot(forecast_test_optimized, label="Forecast", color="red" )
-    st.pyplot(fig)
+    ax2.set_title('Test Data Chart')
+    ax3.plot(forecast_test_optimized, label="Forecast", color="red")
+    ax3.set_title('Forecast Data Chart')
+    st.pyplot(fig2)
 
-#def predicted_values():
     predicted_values = forecast_test_optimized.values 
     actual_values = test.iloc[:,1] #values #.flatten()
 
