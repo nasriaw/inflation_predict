@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pandas_datareader import data as pdr
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.express as px
 import seaborn as sns
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
@@ -161,18 +161,22 @@ def SARIMA_model():
     
     forecast_test_optimized = optimized_sarima_fit.forecast(steps=24)
     forecast_test_optimized.index = test.index
+
+    st.line_chart(train.iloc[:,1], x_label="bulan", y_label="inflasi")
+    st.line_chart(test.iloc[:,1],x_label="bulan", y_label="inflasi")
+    st.line_chart(forecast_test_optimized, x_label="bulan", y_label="inflasi Forecast")
     
-    fig1, ax1 = plt.subplots(1, 1, figsize=(8, 3))
-    ax1.plot(train.iloc[:,1],label="Train Data", color="black")
-    ax1.set_title('Train Data Chart')
-    st.pyplot(fig1)
+    #fig1, ax1 = plt.subplots(1, 1, figsize=(8, 3))
+    #ax1.plot(train.iloc[:,1],label="Train Data", color="black")
+    #ax1.set_title('Train Data Chart')
+    #st.pyplot(fig1)
     
-    fig2, (ax2, ax3) = plt.subplots(2, 1, figsize=(8, 6))
-    ax2.plot(test.iloc[:,1], label="Test Data", color="blue")
-    ax2.set_title('Test Data Chart')
-    ax3.plot(forecast_test_optimized, label="Forecast", color="red")
-    ax3.set_title('Forecast Data Chart')
-    st.pyplot(fig2)
+    # fig2, (ax2, ax3) = plt.subplots(2, 1, figsize=(8, 6))
+    # ax2.plot(test.iloc[:,1], label="Test Data", color="blue")
+    # ax2.set_title('Test Data Chart')
+    # ax3.plot(forecast_test_optimized, label="Forecast", color="red")
+    # ax3.set_title('Forecast Data Chart')
+    # st.pyplot(fig2)
 
     predicted_values = forecast_test_optimized.values 
     actual_values = test.iloc[:,1] #values #.flatten()
