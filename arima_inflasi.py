@@ -126,9 +126,13 @@ def SARIMA_model():
         time.sleep(0.01)
         my_bar.progress(percent_complete + 1, text=progress_text)
     time.sleep(4)
-    
+
+    start_time = time.time()
     model = auto_arima(df.iloc[:,1], seasonal=True, m=12, trace=True, error_action='ignore', suppress_warnings=True)
     model.fit(df.iloc[:,1])
+    end_time = time.time()
+    time_lapsed =np.mean(end_time - start_time)
+    st.write(f'waktu perhitungan optimasi parameter SARIMA : {time_lapsed.round(3)} detik')
     
     st.write("Optimal parameter : ")
     st.write(model)
