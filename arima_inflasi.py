@@ -52,7 +52,6 @@ def intro():
        3. Check stationarity and autocorrelation.
        4. Fit SARIMA model, parameter, prediksi dan evaluasi.
        ###### 👈 Pilih Menu di sebelah; Pastikan data telah di upload (langkah ke-2: Upload File)
-    6. Untuk link demo silahkan klik https://huggingface.co/spaces; Selamat belajar semoga memudahkan untuk memahami statistik regresi.
     '''
     return intro
 
