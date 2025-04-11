@@ -126,7 +126,8 @@ def SARIMA_model():
         end_time = time.time()
         time.sleep=end_time
         time_lapsed =np.mean(end_time - start_time)
-        st.success(f"Selesai !!, waktu optimasi parameter SARIMA : {time_lapsed.round(3)} detik': ")
+        #time_process=float(time_lapsed.timedelta(seconds=666))
+        st.success(f"Selesai !!, waktu optimasi parameter SARIMA : {str(timedelta(seconds=time_lapsed))} detik': ")
            
     st.write("Optimal parameter : ")
     st.write(model)
