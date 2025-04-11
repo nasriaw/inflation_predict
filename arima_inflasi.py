@@ -44,7 +44,7 @@ def intro():
     '''
     1. Aplikasi ini menggunakan bahasa python dengan library utama statsmodels dan streamlit.
     2. Menggunakan model SARIMA dengan data training inflasi 18 Tahun @ 12 bulan, model dapat digunakan untuk prediksi inflasi.
-    3. Diperlukan data dalam bentuk file csv (contoh dapat di download di https://github.com/nasriaw/inflation_indonesia_2006-2024/blob/main/inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv;
+    3. Diperlukan data dalam bentuk file csv (contoh dapat di download di https://github.com/nasriaw/inflation_indonesia_2006-2024/blob/main/inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv; Upload File pada menu sebelah 👈.
     4. File hanya terdiri dari kolom pertama kolom waktu (bersifat series bisa dalam bentuk bulanan dan musiman), kolom ke dua data inflasi atau sejenis, misal data perjalanan, penenan, dll.
     5. Analisis statistik regresi meliputi:
        1. Diskripsi.
