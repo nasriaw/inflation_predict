@@ -107,21 +107,23 @@ def check_stationarity():
 def SARIMAX_model():
     df=pd.read_csv('inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv')
     df.set_index(df.iloc[:,0], inplace=True)
+    
+    optimized_model = SARIMAX(
+        df.iloc[:,1],  
+        order=(5,1,1), #model.order[:3], Non-seasonal parameters
+        seasonal_order=(1, 0, 1, 12), #model.seasonal_order[:4], Seasonal parameters
+         enforce_stationarity=True, # False if p>0.05,
+        enforce_invertibility=False
+    )
+       
     start_time = time.time()
-    with st.spinner("Tunggu proses Optimized Model SARIMAX", show_time=True):
-        optimized_model = SARIMAX(
-            df.iloc[:,1],  
-            order=(5,1,1), #model.order[:3], Non-seasonal parameters
-            seasonal_order=(1, 0, 1, 12), #model.seasonal_order[:4], Seasonal parameters
-            enforce_stationarity=True, # False if p>0.05,
-            enforce_invertibility=False
-        )
-        end_time = time.time()
+    with st.spinner("Tunggu proses Optimized Model SARIMAX", show_time=True): 
+        optimized_sarima_fit = optimized_model.fit(disp=False)
+     end_time = time.time()
         time.sleep=end_time
         time_lapsed =np.mean(end_time - start_time)
         st.success(f"Selesai !!, waktu optimasi parameter SARIMA : {str(timedelta(seconds=time_lapsed))} detik': ")
-            
-    optimized_sarima_fit = optimized_model.fit(disp=False)
+
     st.write("#### telah dihitung untuk pola data inflasi, menggunakan  auto_arima, diperoleh paramater order:(5,1,1), seasonal_order:(1,0,1,12)")
     st.write("### SARIMAX RESULT")
     st.write(optimized_sarima_fit.summary())
