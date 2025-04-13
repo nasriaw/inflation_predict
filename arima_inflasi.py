@@ -31,9 +31,9 @@ menu=pd.DataFrame(features)
 #[m,n] =menu.shape
 #st.write(m,n)
 #st.sidebar.image("logo_stiei.jpg", use_column_width=False)
-st.sidebar.markdown('<h3 style="color: White;"> Author: Nasri </h3>', unsafe_allow_html=True)
-st.sidebar.markdown('<h5 style="color: White;"> email: nasri@stieimlg.ac.id </h5>', unsafe_allow_html=True)
-st.sidebar.markdown('<h1 style="color: White;">Analisis Prediksi Inflasi Harga dengan model SARIMAX</h1>', unsafe_allow_html=True)
+st.sidebar.markdown('<h3 style="color: Black;"> Author: Nasri </h3>', unsafe_allow_html=True)
+st.sidebar.markdown('<h5 style="color: Black;"> email: nasri@stieimlg.ac.id </h5>', unsafe_allow_html=True)
+st.sidebar.markdown('<h1 style="color: Black;">Analisis Prediksi Inflasi Harga dengan model SARIMAX</h1>', unsafe_allow_html=True)
 
 model_analisis = st.sidebar.radio('Baca ketentuan penggunaan dengan seksama, Pilih Analisis Prediksi Inflasi Harga:', menu)
 
