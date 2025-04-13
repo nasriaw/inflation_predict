@@ -107,7 +107,7 @@ def check_stationarity():
 def SARIMAX_model():
     df=pd.read_csv('inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv')
     df.set_index(df.iloc[:,0], inplace=True)
-     st.write("#### telah dihitung untuk pola data inflasi, menggunakan  auto_arima, diperoleh paramater order:(5,1,1), seasonal_order:(1,0,1,12)")
+    st.write("#### telah dihitung untuk pola data inflasi, menggunakan  auto_arima, diperoleh paramater order:(5,1,1), seasonal_order:(1,0,1,12)")
     optimized_model = SARIMAX(
         df.iloc[:,1],  
         order=(5,1,1), #model.order[:3], Non-seasonal parameters
