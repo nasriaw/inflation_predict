@@ -119,7 +119,7 @@ def SARIMAX_model():
     start_time = time.time()
     with st.spinner("Tunggu proses Optimized Model SARIMAX", show_time=True): 
         optimized_sarima_fit = optimized_model.fit(disp=False)
-     end_time = time.time()
+        end_time = time.time()
         time.sleep=end_time
         time_lapsed =np.mean(end_time - start_time)
         st.success(f"Selesai !!, waktu optimasi parameter SARIMA : {str(timedelta(seconds=time_lapsed))} detik': ")
