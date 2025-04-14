@@ -52,7 +52,8 @@ def intro():
        3. Check stationarity and autocorrelation.
        4. SARIMA model, Forecast, Evaluation model & Predict.
        ###### 👈 Pilih Menu di sebelah.
-    6. Untuk link demo silahkan klik https://huggingface.co/spaces; Selamat belajar semoga memudahkan untuk memahami statistik regresi.
+    6. Untuk link demo silahkan klik https://nasriaw-aw-predict.streamlit.app/ atau di https://huggingface.co/spaces/nasriaw/predict_inflation
+       Selamat belajar semoga memudahkan untuk untuk memahami Analisis Prediksi Data Series.
     '''
     return intro
 
