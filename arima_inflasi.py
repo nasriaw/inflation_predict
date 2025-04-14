@@ -50,7 +50,7 @@ def intro():
        1. Diskripsi.
        2. Plot historical inflation.
        3. Check stationarity and autocorrelation.
-       4. SARIMA model, Forecast, Evaluation model & Predict.
+       4. SARIMAX model, Forecast, Evaluation model & Predict.
        ###### 👈 Pilih Menu di sebelah.
     6. Link demo dan souce code ini dapat diakses di https://nasriaw-aw-predict.streamlit.app/ atau di https://huggingface.co/spaces/nasriaw/predict_inflation.
     Selamat belajar semoga memudahkan untuk untuk memahami Analisis Prediksi Data Series.
