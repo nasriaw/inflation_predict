@@ -103,7 +103,7 @@ def check_stationarity():
  
     #st.write(f'result[0] = {result[0]:.4f}')
     #st.write(f'result[4] = {result[4]["5%"]:.4f}')
-   st.write('### Kesimpulan :')
+    st.write('### Kesimpulan :')
     if result[0] < result[4]['5%']:
         st.write(f'ADF result = {result[0]:.4f} < {result[4]['5%']:.4f}) (Critical value=5%) : Hipotesis stasioner ditolak, Pola data tidak stasioner, yang berarti menunjukkan tren atau musiman dan yang tidak memiliki rata-rata dan varians yang konstan dari waktu ke waktu.')
     else:
