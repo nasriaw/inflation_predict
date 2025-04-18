@@ -108,26 +108,31 @@ def check_stationarity():
 def SARIMAX_model():
     df=pd.read_csv('inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv')
     df.set_index(df.iloc[:,0], inplace=True)
-    st.write("#### telah dihitung untuk pola data inflasi, menggunakan  auto_arima, diperoleh paramater order:(5,1,1), seasonal_order:(1,0,1,12)")
-    st.write("Berikut perhitungan model SARIMAX, memerlukan waktu 2 - 3 menit")
-    optimized_model = SARIMAX(
-        df.iloc[:,1],  
-        order=(5,1,1), #model.order[:3], Non-seasonal parameters
-        seasonal_order=(1, 0, 1, 12), #model.seasonal_order[:4], Seasonal parameters
-         enforce_stationarity=True, # False if p>0.05,
-        enforce_invertibility=False
-    )
-       
     start_time = time.time()
-    with st.spinner("Tunggu proses Optimized Model SARIMAX", show_time=True): 
-        optimized_sarima_fit = optimized_model.fit(disp=False)
+    with st.spinner("Tunggu proses Optimized Model SARIMAX", show_time=True):
+        optimized_model = SARIMAX(
+            df.iloc[:,1],  
+            order=(5,1,1), #model.order[:3], Non-seasonal parameters
+            seasonal_order=(1, 0, 1, 12), #model.seasonal_order[:4], Seasonal parameters
+            enforce_stationarity=True, # False if p>0.05,
+            enforce_invertibility=False
+        )
         end_time = time.time()
         time.sleep=end_time
         time_lapsed =np.mean(end_time - start_time)
-        st.success(f"Selesai !!, waktu perhitungan model SARIMAX : {str(timedelta(seconds=time_lapsed))} detik': ")
-
+        st.success(f"Selesai !!, waktu optimasi parameter SARIMA : {str(timedelta(seconds=time_lapsed))} detik': ")
+            
+    optimized_sarima_fit = optimized_model.fit(disp=False)
+    st.write("Telah dihitung untuk pola data inflasi, menggunakan  auto_arima, diperoleh paramater SARIMAX(p,d,q)(P,D,Q,m), yaitu parameter Non seasonal order p,d,q: (5,1,1), dan parameter seasonal_order P,D,Q,m:(1,0,1,12)")
     st.write("### SARIMAX RESULT")
     st.write(optimized_sarima_fit.summary())
+    
+    st.write('### Standardized Residuals')
+    fig=optimized_sarima_fit.plot_diagnostics(figsize=(12, 8))
+    st.pyplot(fig)
+    '''
+    Residual tampak acak dan berfluktuasi di sekitar nol, yang menunjukkan tidak ada pola atau tren yang terlihat. Histogram dengan Kepadatan Diperkirakan, residual terdistribusi secara normal, karena histogram selaras dengan kurva kepadatan normal. Plot Q-Q Normal, residual sebagian besar mengikuti garis diagonal merah, yang memvalidasi bahwa residual tersebut hampir terdistribusi secara normal. Korelogram (ACF), tidak ada lonjakan signifikan dalam fungsi autokorelasi (ACF), yang menunjukkan residual tidak berkorelasi.
+    '''
     
     train = df.iloc[:-24] 
     test = df.iloc[-24:]
@@ -194,7 +199,7 @@ def SARIMAX_model():
 
     # Convert forecast to a pandas Series for easier plotting
     forecast_series = pd.Series(forecast, index=pd.date_range('2025', periods=forecast_steps, freq='ME'))
-    st.write(f'Inflation Predicted next 3 month: {forecast:3f} %')
+    st.write(f'Inflation Predicted next 3 month: {forecast:3f} %') #, stderr: {stderr}, conf: {conf_int}')
     
 
 if model_analisis == "Introduksi":
