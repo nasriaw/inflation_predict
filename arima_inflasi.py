@@ -82,28 +82,38 @@ def check_stationarity():
     df=pd.read_csv('inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv')
     df.set_index(df.iloc[:,0], inplace=True)
     
-    st.write("### Auto Correlation Chart")
+    st.write("### Auto Correlation Function (ACF) Chart")
     fig, (ax1) = plt.subplots(1, 1, figsize=(8, 3))
     plot_acf(df.iloc[:,1], ax=ax1)
     st.pyplot(fig)
-        
+    st.write("### Partial Auto Correlation Function (PCF) Chart")
+    #st.line_chart(df.iloc[:,1], x_label="periode", y_label="inflasi")
+    
     fig1, (ax2) = plt.subplots(1, 1, figsize=(8, 3))
     plot_pacf(df.iloc[:,1], ax=ax2)
     st.pyplot(fig1)
     
-    st.write("### ADF, P-value Result")
+    st.write("### Augmented Dickey-Fuller (ADF), P-value Result")
     result = adfuller(df.iloc[:,1])
-    st.write("ADF Statistic:", result[0].round(4))
+    st.write("Augmented Dickey-Fuller (ADF) Statistic:", result[0].round(4))
     st.write("p-value:", result[1].round(4))
+       
     for key, value in result[4].items():
         st.write(f'Critical Value ({key}): {value.round(4)}')
  
-    '''
-        Non-Stationary Data: The ADF statistic -3.035 is less than all critical values at 5 % (-2.875), 
-        meaning the null hypothesis (cannot be) rejected. The p-value (0.031) is significantly less than 0.05, 
-        indicating a high probability that the data has a unit root. Hence, the data is non-stationary, 
-        meaning it exhibits trends or seasonality and does not have constant mean (constant??) and variance over time.
-    '''
+    #st.write(f'result[0] = {result[0]:.4f}')
+    #st.write(f'result[4] = {result[4]["5%"]:.4f}')
+    st.write('### Kesimpulan :')
+    if result[0] < result[4]['5%']:
+        st.write(f'ADF result = {result[0]:.4f} < {result[4]['5%']:.4f}) (Critical value=5%) : Hipotesis stasioner ditolak, Pola data tidak stasioner, yang berarti menunjukkan tren atau musiman dan yang tidak memiliki rata-rata dan varians yang konstan dari waktu ke waktu.')
+    else:
+        st.write(f'ADF result = {result[0]:.4f} > {result[4]['5%']:.4f} (Critical value=5%) : Hipotesis stasioner diterima, Pola data stasioner, yang berarti menunjukkan tren atau musiman dan yang memiliki rata-rata dan varians yang konstan dari waktu ke waktu.')
+    
+    if result[1].round(4)> 0.05:
+        st.write(f'p-value = {result[1]:.4f} > 0.05 : Hipotesis stasioner diterima, Pola data stasioner, yang berarti menunjukkan tren atau musiman dan yang memiliki rata-rata dan varians yang konstan dari waktu ke waktu, parameter enforce_stationarity=False.')
+    else:
+        st.write(f'p-value = {result[1]:.4f} < 0.05 : Hipotesis stasioner ditolak, Pola data tidak stasioner, yang berarti menunjukkan tren atau musiman dan yang tidak memiliki rata-rata dan varians yang konstan dari waktu ke waktu, parameter enforce_stationarity=True.')
+
 
 def SARIMAX_model():
     df=pd.read_csv('inflasi_harga_konsumen_nasional_bulanan_2006_2024.csv')
