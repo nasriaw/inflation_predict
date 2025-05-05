@@ -52,7 +52,7 @@ def intro():
        3. Check stationarity and autocorrelation.
        4. SARIMAX model, Forecast, Evaluation model & Predict.
        ###### 👈 Pilih Menu di sebelah.
-    6. Link template, siapkan data dan upload ke link: https://predict-analysis-data-series.streamlit.app/ ; source code demo ini di link: https://nasriaw-aw-predict.streamlit.app/ ;  
+    6. Link template, siapkan data dan upload ke https://predict-analysis-data-series.streamlit.app/ ; source code demo ini di link: https://nasriaw-aw-predict.streamlit.app/ ;  
     Selamat belajar semoga memudahkan untuk untuk memahami Analisis Prediksi Data Series.
     '''
     return intro
